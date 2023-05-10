@@ -15,7 +15,6 @@ namespace SmartSchool_WebApi.Models
        public string sobrenome { get; set; } 
        public int telefone { get; set; }
     
-      
     public Aluno(int id , string nome,string sobrenome, int telefone) 
     {
             this.id=id;
