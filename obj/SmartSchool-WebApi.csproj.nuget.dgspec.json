@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj": {}
+    "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj": {
+    "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
         "projectName": "SmartSchool-WebApi",
-        "projectPath": "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
+        "projectPath": "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
         "packagesPath": "C:\\Users\\nilson.pereira\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\obj\\",
+        "outputPath": "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nilson.pereira\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,12 +43,14 @@
               "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[7.0.5, )"
             },

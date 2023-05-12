@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZoJcyOnv+IT716ent4o6YxsHSaprboOt6pu/Pq+iqd4KlG0eViFQUWI8J+8R0lSWb9EoSNoHkPqGrW/+tgU6OA==",
+  "dgSpecHash": "x7UYfasLeF1Nq4iuY8QH8z/193XtKhDUXQgs8loUN6gz9D9C8oZ/6koEUyUACNgN53zaO7xkhLHHMlfxnXypvg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
+  "projectFilePath": "C:\\Users\\nilson.pereira\\Desktop\\Angular\\angular  &  .net core\\SmartSchool-WebApi\\SmartSchool-WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
@@ -14,6 +14,7 @@
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.5\\microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\7.0.5\\microsoft.entityframeworkcore.sqlite.7.0.5.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\7.0.5\\microsoft.entityframeworkcore.sqlite.core.7.0.5.nupkg.sha512",
+    "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.5\\microsoft.entityframeworkcore.tools.7.0.5.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\nilson.pereira\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
