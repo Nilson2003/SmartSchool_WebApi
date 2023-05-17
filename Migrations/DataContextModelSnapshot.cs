@@ -346,13 +346,13 @@ namespace SmartSchool_WebApi.Migrations
             modelBuilder.Entity("SmartSchool_WebApi.Models.AlunoDisciplina", b =>
                 {
                     b.HasOne("SmartSchool_WebApi.Models.Aluno", "aluno")
-                        .WithMany()
+                        .WithMany("AlunosDisciplinas")
                         .HasForeignKey("alunoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmartSchool_WebApi.Models.Disciplina", "disciplina")
-                        .WithMany()
+                        .WithMany("AlunoDisciplinas")
                         .HasForeignKey("disciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -360,6 +360,16 @@ namespace SmartSchool_WebApi.Migrations
                     b.Navigation("aluno");
 
                     b.Navigation("disciplina");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Aluno", b =>
+                {
+                    b.Navigation("AlunosDisciplinas");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Disciplina", b =>
+                {
+                    b.Navigation("AlunoDisciplinas");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,12 +1,33 @@
 using Microsoft.EntityFrameworkCore;
 using SmartSchool_WebApi.Data;
+
+using Microsoft.Extensions.Configuration;
+
  
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+//Ignore o loop infinito
+   .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
+Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+
+//AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = 
+                       // Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+// builder.Services.AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = 
+                        // Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+//builder.Services
+// regista o servico coom o tempo de vida,um solicitação
+builder.Services.AddScoped<IRepository,Repository>();
+//.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+//builder.Services.AddScoped(typeof(c),typeof(Repository));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddDbContext<> 

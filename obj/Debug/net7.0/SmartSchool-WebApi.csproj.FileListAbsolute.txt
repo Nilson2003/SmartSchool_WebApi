@@ -67,3 +67,7 @@ C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi
 C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\nilson.pereira\Desktop\Angular\angular  &  .net core\SmartSchool-WebApi\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
