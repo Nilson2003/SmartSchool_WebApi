@@ -10,29 +10,14 @@ using SmartSchool_WebApi.Data;
 namespace SmartSchool_WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230511231243_initial")]
-    partial class initial
+    [Migration("20230517212137_listagem_Profe_versao1")]
+    partial class listagem_Profe_versao1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
-
-            modelBuilder.Entity("DisciplinaProfessor", b =>
-                {
-                    b.Property<int>("Disciplinaid")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Professorid")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Disciplinaid", "Professorid");
-
-                    b.HasIndex("Professorid");
-
-                    b.ToTable("DisciplinaProfessor");
-                });
 
             modelBuilder.Entity("SmartSchool_WebApi.Models.Aluno", b =>
                 {
@@ -246,14 +231,16 @@ namespace SmartSchool_WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ProfessorId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("professorId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("id");
+
+                    b.HasIndex("ProfessorId");
 
                     b.ToTable("Disciplinas");
 
@@ -261,32 +248,32 @@ namespace SmartSchool_WebApi.Migrations
                         new
                         {
                             id = 1,
-                            nome = "Matemática",
-                            professorId = 1
+                            ProfessorId = 1,
+                            nome = "Matemática"
                         },
                         new
                         {
                             id = 2,
-                            nome = "Física",
-                            professorId = 2
+                            ProfessorId = 2,
+                            nome = "Física"
                         },
                         new
                         {
                             id = 3,
-                            nome = "Português",
-                            professorId = 3
+                            ProfessorId = 3,
+                            nome = "Português"
                         },
                         new
                         {
                             id = 4,
-                            nome = "Inglês",
-                            professorId = 4
+                            ProfessorId = 4,
+                            nome = "Inglês"
                         },
                         new
                         {
                             id = 5,
-                            nome = "Programação",
-                            professorId = 5
+                            ProfessorId = 5,
+                            nome = "Programação"
                         });
                 });
 
@@ -331,31 +318,16 @@ namespace SmartSchool_WebApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DisciplinaProfessor", b =>
-                {
-                    b.HasOne("SmartSchool_WebApi.Models.Disciplina", null)
-                        .WithMany()
-                        .HasForeignKey("Disciplinaid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartSchool_WebApi.Models.Professor", null)
-                        .WithMany()
-                        .HasForeignKey("Professorid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SmartSchool_WebApi.Models.AlunoDisciplina", b =>
                 {
                     b.HasOne("SmartSchool_WebApi.Models.Aluno", "aluno")
-                        .WithMany()
+                        .WithMany("AlunosDisciplinas")
                         .HasForeignKey("alunoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SmartSchool_WebApi.Models.Disciplina", "disciplina")
-                        .WithMany()
+                        .WithMany("AlunoDisciplinas")
                         .HasForeignKey("disciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -363,6 +335,32 @@ namespace SmartSchool_WebApi.Migrations
                     b.Navigation("aluno");
 
                     b.Navigation("disciplina");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Disciplina", b =>
+                {
+                    b.HasOne("SmartSchool_WebApi.Models.Professor", "Professor")
+                        .WithMany("Disciplina")
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Professor");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Aluno", b =>
+                {
+                    b.Navigation("AlunosDisciplinas");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Disciplina", b =>
+                {
+                    b.Navigation("AlunoDisciplinas");
+                });
+
+            modelBuilder.Entity("SmartSchool_WebApi.Models.Professor", b =>
+                {
+                    b.Navigation("Disciplina");
                 });
 #pragma warning restore 612, 618
         }

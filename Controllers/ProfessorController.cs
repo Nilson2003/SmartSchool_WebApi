@@ -24,13 +24,13 @@ namespace SmartSchool_WebApi.Controllers
 
        }
        
-       
+        //Metodo que lista os professores e os respectivo disciplina
         [HttpGet]
         public async Task<IActionResult> Get()
         {
           try
           {   
-            var result= _repo.GetAllProfessoresAsync(true);
+            var result= await _repo.GetAllProfessoresAsync(true);
             
             return Ok(result);
           }
@@ -40,13 +40,49 @@ namespace SmartSchool_WebApi.Controllers
           return BadRequest($"Error: {ex.Message}");
           
         }
-      }
+      }  
+      // Metodo que retorna professor e os sus respectivo desciplina
+       [HttpGet("{professorId}")]
+        public async Task<IActionResult> GetByProfessorId(int professorId)
+        {
+            try
+
+            {    
+                var result = await _repo.GetProfessorAsyncById(professorId, true);
+               
+                return Ok(result);
+               
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+
+            }
+
+        }
+
+       [HttpGet("ByAluno/{alunoId}")]
+        public async Task<IActionResult> GetByAlunoId(int alunoId)
+        {
+          
+          try   
+            {    
+
+                var result = await _repo.GetProfessoresAsyncByAlunoId(alunoId, false);
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                  return BadRequest($"Error: {ex.Message}");
+
+            }
+        }
 
        //Metodo post ,metdo para inserir professor
         [HttpPost]
         public async Task<IActionResult> Post(Professor model)
         {
-           System.Console.WriteLine("ok");
+         
             try
             {
                 _repo.Add(model);
@@ -75,7 +111,7 @@ namespace SmartSchool_WebApi.Controllers
             try
             {
              
-                var aluno = await _repo.GetProfessorAsyncById(professorId, true);
+                var aluno = await _repo.GetProfessorAsyncById(professorId, false);
 
                 if (aluno == null) return NotFound();
                    //  pegar id de url atribuir ao model
