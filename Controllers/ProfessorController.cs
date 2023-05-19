@@ -8,50 +8,49 @@ using SmartSchool_WebApi.Models;
 
 namespace SmartSchool_WebApi.Controllers
 {
-     [ApiController]
-     [Route("api/[controller]")]
 
-        public class ProfessorController : ControllerBase
+    [Route("api/[controller]")]
+    [ApiController]
+
+    public class ProfessorController : ControllerBase
     {
-       public readonly IRepository _repo;
-       
-       public ProfessorController(IRepository repo )
-       {
+        public readonly IRepository _repo;
+
+        public ProfessorController(IRepository repo)
+        {
 
 
-           _repo=repo;
+            _repo = repo;
 
 
-       }
-       
+        }
+
         //Metodo que lista os professores e os respectivo disciplina
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-          try
-          {   
-            var result= await _repo.GetAllProfessoresAsync(true);
-            
-            return Ok(result);
-          }
-          catch (Exception ex)
-          {
-            
-          return BadRequest($"Error: {ex.Message}");
-          
+            try
+            {
+                var result = await _repo.GetAllProfessoresAsync(true);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest($"Error: {ex.Message}");
+
+            }
         }
-      }  
-      // Metodo que retorna professor e os sus respectivo desciplina
-       [HttpGet("{professorId}")]
+        // Metodo que retorna professor e os sus respectivo desciplina
+        [HttpGet("{professorId}")]
         public async Task<IActionResult> GetByProfessorId(int professorId)
         {
-            try
-
-            {    
+            try{
                 var result = await _repo.GetProfessorAsyncById(professorId, true);
-               
+
                 return Ok(result);
-               
+
             }
             catch (System.Exception ex)
             {
@@ -61,33 +60,33 @@ namespace SmartSchool_WebApi.Controllers
 
         }
 
-       [HttpGet("ByAluno/{alunoId}")]
+        [HttpGet("ByAluno/{alunoId}")]
         public async Task<IActionResult> GetByAlunoId(int alunoId)
         {
-          
-          try   
-            {    
+
+            try
+            {
 
                 var result = await _repo.GetProfessoresAsyncByAlunoId(alunoId, false);
                 return Ok(result);
             }
             catch (System.Exception ex)
             {
-                  return BadRequest($"Error: {ex.Message}");
+                return BadRequest($"Error: {ex.Message}");
 
             }
         }
 
-       //Metodo post ,metdo para inserir professor
+        //Metodo post ,metdo para inserir professor
         [HttpPost]
         public async Task<IActionResult> Post(Professor model)
         {
-         
+
             try
             {
                 _repo.Add(model);
 
-                 //se salvar alguma coisa retornar com sucesso
+                //se salvar alguma coisa retornar com sucesso
                 if (await _repo.SaveChangesAsync())
                 {
 
@@ -104,29 +103,29 @@ namespace SmartSchool_WebApi.Controllers
             return BadRequest();
 
         }
-  //Metudo put metudo para atualizar alunos
+        //Metudo put metudo para atualizar alunos
         [HttpPut("{professorId}")]
         public async Task<IActionResult> put(int professorId, Professor model)
         {
             try
             {
-             
+
                 var aluno = await _repo.GetProfessorAsyncById(professorId, false);
 
                 if (aluno == null) return NotFound();
-                   //  pegar id de url atribuir ao model
-                   model.id=professorId;
+                //  pegar id de url atribuir ao model
+                model.id = professorId;
 
                 _repo.Update(model);
 
                 if (await _repo.SaveChangesAsync())
                 {
-                     //return Ok("ok");
+                    //return Ok("ok");
                     return Ok(model);
 
                 }
 
-              }
+            }
 
             catch (System.Exception ex)
             {
@@ -138,6 +137,35 @@ namespace SmartSchool_WebApi.Controllers
 
         }
 
+        //Metodo para pagar professor
+        [HttpDelete("{professorId}")]
+         
+        public async Task<IActionResult> delete(int professorId)
+        { 
+            try
+            {  
+                var professsor = await _repo.GetProfessorAsyncById(professorId,false);
+                if (professsor == null) return NotFound();
 
-    }    
+                _repo.Delete(professsor);
+                if (await _repo.SaveChangesAsync())
+                {
+                    return Ok(" Professor Deletado");
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+
+            }
+
+            return BadRequest();
+
+
+        }
+
+
+
+    }
 }

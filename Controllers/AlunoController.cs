@@ -21,18 +21,18 @@ namespace SmartSchool_WebApi.Controllers
 
         }
 
-         //API listagem
+        //API listagem
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             { // se adecionar falso  retorna somente alunos, se passar falso dentro metodo
-            //GetAllAlunosAsync() nao vai fazer join nem com AlunosDisciplinas ,discipliena e professor
-            // No caso for adecionado false deve retornar somente alunos
+              //GetAllAlunosAsync() nao vai fazer join nem com AlunosDisciplinas ,discipliena e professor
+              // No caso for adecionado false deve retornar somente alunos
                 var result = await _repo.GetAllAlunosAsync(false);
                 return Ok(result);
             }
-            
+
             catch (System.Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");
@@ -47,7 +47,7 @@ namespace SmartSchool_WebApi.Controllers
             try
             {
                 var result = await _repo.GetAlunoAsyncById(alunoId, true);
-                
+
                 return Ok(result);
             }
             catch (System.Exception ex)
@@ -65,7 +65,7 @@ namespace SmartSchool_WebApi.Controllers
             //return Ok("okkk");
             try
             { //pega todos os alunos que estao matriculado a um determinado desciplina,para pegar 
-             //somente aluno adecionana falso no metodo GetAlunosAsyncByDisciplinaId(disciplinaId, false)  
+              //somente aluno adecionana falso no metodo GetAlunosAsyncByDisciplinaId(disciplinaId, false)  
                 var result = await _repo.GetAlunosAsyncByDisciplinaId(disciplinaId, false);
                 return Ok(result);
             }
@@ -81,12 +81,12 @@ namespace SmartSchool_WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Aluno model)
         {
-           System.Console.WriteLine("ok");
+            System.Console.WriteLine("ok");
             try
             {
                 _repo.Add(model);
 
-                 //se salvar alguma coisa retornar com sucesso
+                //se salvar alguma coisa retornar com sucesso
                 if (await _repo.SaveChangesAsync())
                 {
 
@@ -111,18 +111,18 @@ namespace SmartSchool_WebApi.Controllers
         {
             try
             {
-             
+
                 var aluno = await _repo.GetAlunoAsyncById(alunoId, false);
 
                 if (aluno == null) return NotFound();
-                   //  pegar id de url atribuir ao model
-                   model.id=alunoId;
+                //  pegar id de url atribuir ao model
+                model.id = alunoId;
 
                 _repo.Update(model);
 
                 if (await _repo.SaveChangesAsync())
                 {
-                     //return Ok("ok");
+                    //return Ok("ok");
                     return Ok(model);
 
                 }
@@ -141,7 +141,7 @@ namespace SmartSchool_WebApi.Controllers
 
         //Metudo delete, metudo para apagar  alunos registado
         [HttpDelete("{alunoId}")]
-        public async Task<IActionResult> delete(int alunoId, Aluno model)
+        public async Task<IActionResult> delete(int alunoId)
         {
             try
             {
@@ -149,13 +149,13 @@ namespace SmartSchool_WebApi.Controllers
                 var aluno = await _repo.GetAlunoAsyncById(alunoId, false);
 
                 if (aluno == null) return NotFound();
-               
-                    _repo.Delete(aluno);
-                  
+
+                _repo.Delete(aluno);
+
                 //aqui salva aluno deletado
+                //mostra que o aluno foi deletado
                 if (await _repo.SaveChangesAsync())
                 {
-                   //mostra que o aluno foi deletado
                     return Ok("Aluno Deletado");
 
                 }
