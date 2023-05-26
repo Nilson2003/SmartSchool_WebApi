@@ -84,6 +84,7 @@ namespace SmartSchool_WebApi.Controllers
             System.Console.WriteLine("ok");
             try
             {
+                
                 _repo.Add(model);
 
                 //se salvar alguma coisa retornar com sucesso
@@ -156,7 +157,7 @@ namespace SmartSchool_WebApi.Controllers
                 //mostra que o aluno foi deletado
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Ok("Aluno Deletado");
+                    return Ok(new {message="Aluno Deletado"});
 
                 }
 

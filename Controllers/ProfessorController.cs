@@ -150,7 +150,7 @@ namespace SmartSchool_WebApi.Controllers
                 _repo.Delete(professsor);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Ok(" Professor Deletado");
+                    return Ok(new {message=" Professor Deletado"});
 
                 }
             }
