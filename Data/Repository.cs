@@ -7,9 +7,9 @@ using SmartSchool_WebApi.Models;
 
 namespace SmartSchool_WebApi.Data
 {
-    public class Repository:IRepository
+    public class Repository : IRepository
     {
-         private readonly DataContext _context;
+        private readonly DataContext _context;
 
         public Repository(DataContext context)
         {
@@ -65,7 +65,7 @@ namespace SmartSchool_WebApi.Data
 
             return await query.FirstOrDefaultAsync();
         }
-        
+
         public async Task<Aluno[]> GetAlunosAsyncByDisciplinaId(int disciplinaId, bool includeDisciplina)
         {
             IQueryable<Aluno> query = _context.Alunos;
@@ -73,7 +73,7 @@ namespace SmartSchool_WebApi.Data
             if (includeDisciplina)
             {
                 query = query.Include(p => p.AlunosDisciplinas)
-                             .ThenInclude(ad => ad.disciplina)                             
+                             .ThenInclude(ad => ad.disciplina)
                              .ThenInclude(d => d.Professor);
             }
 
@@ -94,9 +94,9 @@ namespace SmartSchool_WebApi.Data
             }
 
             query = query.AsNoTracking()
-                         .OrderBy(aluno => aluno.id) 
-   ////////////////////////////////////////      ////////////////////////////// /////////////////////////////////////////
-                         .Where(aluno => aluno.Disciplina.Any(d => 
+                         .OrderBy(aluno => aluno.id)
+                         ////////////////////////////////////////      ////////////////////////////// /////////////////////////////////////////
+                         .Where(aluno => aluno.Disciplina.Any(d =>
                             d.AlunoDisciplinas.Any(ad => ad.alunoId == alunoId)));
 
             return await query.ToArrayAsync();
@@ -136,5 +136,57 @@ namespace SmartSchool_WebApi.Data
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Utilizador[]> GetAllUtilizadoresAsync()
+        {
+
+            var utilisadores = await _context.Utilizadores.Select(u => new Utilizador(u.id, u.nome, u.email, "", u.estado, u.funcao)).ToArrayAsync();
+
+            return utilisadores;
+
+        }
+        //
+        public async Task<Utilizador> GetUtilizadorAsyncById(int utilizadorId)
+        {
+
+            var utilizador = await _context.Utilizadores.SingleAsync(u => u.id == utilizadorId);
+
+            return utilizador;
+        }
+
+
+         public async Task<Utilizador> GetEmailPasswordAsync( string password,string email){
+
+
+             var utilizadorEmailSenha = await _context.Utilizadores.FirstAsync(u=>u.email==email && u.senha==password );
+           System.Console.WriteLine("ok");
+               return utilizadorEmailSenha;
+         }
+
+
+
+//  public string Decrypt(string cipher)
+//     {
+//         if (cipher == null) throw new ArgumentNullException("cipher");
+
+//         //parse base64 string
+//         byte[] data = Convert.FromBase64String(cipher);
+
+//         //decrypt data
+//         byte[] decrypted = ProtectedData.Unprotect(data, null, Scope);
+//         return Encoding.Unicode.GetString(decrypted);
+//     }
+//    public string decryptPassword(string senha){
+
+//           if(string.IsNullOrEmpty(senha)){
+//             return null;
+//           }
+//           else{
+//                 byte[] encryptedPassword= Converter(senha);
+//           }
+
+//        }
+
     }
 }
+    
